@@ -1,4 +1,6 @@
+package tests;
 
+import model.LoginBodyModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -28,7 +30,6 @@ public class ReqresinTests {
                 .log().body()
                 .statusCode(200)
                 .body("token", is("QpwL5tke4Pnpja7X4"));
-
     }
 }
 
