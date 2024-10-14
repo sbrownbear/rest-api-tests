@@ -1,6 +1,5 @@
 package tests;
 
-import model.LoginBodyModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
