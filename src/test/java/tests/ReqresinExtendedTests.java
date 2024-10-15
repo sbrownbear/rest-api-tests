@@ -14,6 +14,8 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static specs.LoginSpec.loginRequestSpec;
+import static specs.LoginSpec.loginResponseSpec;
 
 
 public class ReqresinExtendedTests {
@@ -154,7 +156,23 @@ public class ReqresinExtendedTests {
                             .extract().as(LoginResponseLombokModel.class));
         step("Verify authorization response", () ->
                 assertThat(loginResponse.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
+    }
 
+    @Test
+    void checkTokenLoginWithSpecTest() {
+        LoginBodyLombokModel loginBody = new LoginBodyLombokModel();
+        loginBody.setEmail("eve.holt@reqres.in");
+        loginBody.setPassword("cityslicka");
+
+        LoginResponseLombokModel loginResponse = given(loginRequestSpec)
+                .body(loginBody)
+                .when()
+                .post("https://reqres.in/api/login")
+                .then()
+                .spec(loginResponseSpec)
+                .extract().as(LoginResponseLombokModel.class);
+
+        assertThat(loginResponse.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
     }
 
 }
