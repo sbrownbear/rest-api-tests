@@ -1,3 +1,4 @@
+package tests;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,6 @@ public class ReqresinTests {
                 .log().body()
                 .statusCode(200)
                 .body("token", is("QpwL5tke4Pnpja7X4"));
-
     }
 }
 
